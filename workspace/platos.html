@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="css/carro.css" type="text/css"/>
+    <script src="scripts/platos.js"></script>
+    <script src="scripts/cliente.js"></script>
+
+</head>
+
+<body>
+    <script>    
+     window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1410007972632017',
+      xfbml      : true,
+      version    : 'v2.6',
+      status     : false, 
+      cookie     : true, 
+      xfbml      : false
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   
+ 
+        
+ function Deslogearse(){
+
+    for(i= sessionStorage.length-1;i >=0;i--){
+        key = sessionStorage.key(i);
+         sessionStorage.removeItem(key);
+        
+    }
+     
+    logoutFace();
+   
+   document.location.href = "login.html"
+     
+    
+    
+}
+function logoutFace() {
+    alert("entro Logout");
+   FB.logout(function(response){
+       alert("entro");
+   });
+}
+    </script>
+    <div data-role="page" id="platos" data-theme="a">
+        <div data-role="content">
+
+            <div data-role="header">
+            <h1>Platos</h1>
+
+                <a href="#"  onclick="Deslogearse()" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-notext" ></a>
+             </div>
+            <div  data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+                  <h4>Opciones</h4>
+                <ul data-role="listview" data-inset="false">
+                  <li id="info"><a href="#infoCliente">Mi cuenta</a></li>
+                  <li><a href="#carro" onclick="listarPlatosEnCarro()" >Ver pedido</a></li>
+                </ul>
+            </div>
+   
+              
+           
+            <ul data-role="listview" data-inset="true" data-filter="true" id="lista_platos">
+            </ul>
+        </div>
+    </div>
+    
+    <div data-role="page" data-theme="a" id="infoCliente">
+       <div data-role="content">
+           <h2>Administracion de los datos del cliente</h2>
+           
+            <div data-role="fieldcontain">
+                <label for="nombreCliente">Nombre: </label>
+                <input type="text" id="nombreCliente"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="apellidoCliente">Apellido: </label>
+                <input type="text" id="apellidoCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="correoCliente">Correo: </label>
+                <input type="text" id="correoCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="contraseñaCliente">Contraseña: </label>
+                <input type="text" id="contraseñaCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="provincia">Provincia: </label>
+                <input type="text" id="provincia" />
+            </div>
+            
+            <div data-role="fieldcontain">
+              <label for="canton">Cantón: </label>
+              <input type="text" id="canton" />
+             </div>
+             
+              <div data-role="fieldcontain">
+                 <label for="direccion">Direccion exacta: </label>
+                 <input type="text" id="direccion" />
+            </div>
+
+        <a class="ui-btn ui-mini" href="#platos">Regresar</a>
+        <a class="ui-btn ui-mini"  onclick="actualizarDatos()" href="#platos">Actualizar Datos</a>
+       </div>
+   </div>
+
+
+
+    <div data-role="page" id="platoDetalle">
+        <div data-role="content"> 
+            <div id="detalles" >
+                <input type="hidden" name="" id="idPlato"/>
+                <h3 id="nombre"></h3>
+                <p id="descripcion"></p>
+                <p id="precio"></p>
+                <img id="imagen" height="200" width="200"></img>
+                
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" min="1" max="99" value ="1" >
+            </div>
+           
+            <a class="ui-btn ui-mini" href="#platos" onclick="agregarAlCarro()">Agregar plato</a>
+            <a class="ui-btn ui-mini" onclick="refrescarLista()" href="#platos">Regresar</a>
+        </div> 
+    </div>
+    
+    <div data-role="page" id="carro">
+        <div data-role="content">
+            <header id=headerCarro><h1>Mi pedido</h1></header>
+            <ul data-role="listview" id="listaPlatosAgregados"></ul>
+            <br>
+           <label class="totalPed" for="total"><p>Total: </p></label>
+           <span id="totalPedido" class="totalPed" >0</span>
+           <br>
+<!--           <button data-icon="check" onclick="realizaCompra()">Comprar</button>        -->
+           <a data-icon="check" class="ui-btn ui-mini" onclick="realizaCompra()">Comprar</a>
+           <a class="ui-btn ui-mini" href="#platos">Regresar</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<!--
+function platoDetalle(datos, idPlato) {
+    $('#platoCompleto').empty();
+    
+    $.each(datos, function(){
+    if(idPlato == this.idPlato){
+        var li = document.createElement('li');
+        
+        var nombre= document.createElement('h2');
+        nombre.innerHTML = this.nombre;
+        li.appendChild(nombre);
+        
+        var descripcion= document.createElement('p');
+        descripcion.innerHTML = "DESCRIPCION:  " + this.descripcion;
+        li.appendChild(descripcion);
+        
+        var precio= document.createElement('p');
+        precio.innerHTML = "PRECIO: " + this.precio;
+        li.appendChild(precio);
+        
+        var img = document.createElement("img");
+        img.src="http://apprestaurante.azurewebsites.net/" + this.fotografia;
+        li.appendChild(img);
+        
+        $('#platoCompleto').append(li);
+    }
+    });
+    
+     $('#platoCompleto').listview('refresh');
+}

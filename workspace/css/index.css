@@ -1,0 +1,26 @@
+#inicio{
+   background-image:url(//s-media-cache-ak0.pinimg.com/564x/61/95/03/619503601e1a16f27c9f442ba0f41c19.jpg);
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+#contenido{
+    background-color: lightgray;
+    opacity:0.9;
+    margin-top:70px;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+ border-color:black;   
+ 
+}
+
+#presentacion{
+    text-align:center;
+}
+
+#nombreApp{
+    font-family: 'Pacifico', cursive;
+    font-size: -webkit-xxx-large;
+}

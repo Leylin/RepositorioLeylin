@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/cliente.js"></script>
+
+</head>
+<body>
+    
+          <div data-role="page">
+            <div class="head" data-role="header" data-theme="c">
+                <h1>Registro</h1>
+            </div><!-- /header -->
+   
+    <div data-role="" data-theme="b">
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <label for="nombreCliente">Nombre: </label>
+                <input type="text" id="nombreCliente"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="apellidoCliente">Apellido: </label>
+                <input type="text" id="apellidoCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="correoCliente">Correo: </label>
+                <input type="text" id="correoCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="contraseñaCliente">Contraseña: </label>
+                <input type="text" id="contraseñaCliente" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <h3>Direccion:</h3>
+                <div data-role="fieldcontain">
+                    <label for="provincia">Provincia: </label>
+                    <input type="text" id="provincia" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="canton">Cantón: </label>
+                    <input type="text" id="canton" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="direccion">Direccion exacta: </label>
+                    <input type="text" id="direccion" />
+                </div>
+
+            </div>
+            <button data-corners="false" data-enhanced="true" data-icon="check" onclick="guardarCliente()">Guardar</button>
+        </div>
+    </div>
+</body>
+</html>
